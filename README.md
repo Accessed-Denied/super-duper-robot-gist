@@ -65,14 +65,7 @@ extension SearchVC: UISearchBarDelegate {
     // textDidChange
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let text = searchBar.text ?? ""
-        if searchType == .product {
-            let request = SearchRequest(text: text, paginationToken: false, page: 1, limit: 25)
-            searchVM.search(searchRequest: request)
-        } else if searchType == .restaurant {
-            // restaurant
-            let request = RestaurantListRequest(longitude: longitude, latitude: latitude, categories: [], text: text)
-            restaurantListingVM.fetchRestaurantListing(request: request)
-        }
+        // todo
     }
     
     // searchBarSearchButtonClicked
