@@ -20,3 +20,63 @@ class CustomTextField: UITextField {
     }
 }
 ```
+
+## 2. UISearchBar Customizations
+````swift
+//MARK: - UISearchBarDelegate
+extension SearchVC: UISearchBarDelegate {
+    // SearchBar Properties
+    func SearchBarCustomization(){
+        searchBar.scopeBarBackgroundImage = UIImage()
+        searchBar.backgroundImage = UIImage()
+        var searchTextField : UITextField?
+        if #available(iOS 13.0, *) {
+            searchTextField = searchBar.searchTextField
+        } else {
+            // Fallback on earlier versions
+            if let matchingTextField = searchBar.subviews[0].subviews.compactMap ({ $0 as? UITextField }).first {
+                searchTextField = matchingTextField
+            }
+        }
+        guard let validTextField = searchTextField else { return }
+        let image:UIImage = UIImage(named: "ic_iconSearch")!
+        let imageView:UIImageView = UIImageView.init(image: image)
+        imageView.contentMode = .scaleAspectFit
+        validTextField.leftView = imageView
+        validTextField.layer.cornerRadius = 6
+        validTextField.layer.borderWidth = 1.0
+        validTextField.layer.borderColor = #colorLiteral(red: 0.9058823529, green: 0.9058823529, blue: 0.9058823529, alpha: 1)
+        validTextField.backgroundColor = .white
+        validTextField.font = UIFont(name: APP_FONT.buenosAiresBook.rawValue, size: 14)
+//        var bounds: CGRect
+//        bounds = validTextField.frame
+//        bounds.size.height = 60 //(set height whatever you want)
+//        validTextField.bounds = bounds
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+        searchBar.becomeFirstResponder()
+    }
+    
+    // searchBarCancelButtonClicked
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.navigationController?.popViewController(animated: false)
+    }
+    
+    // textDidChange
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let text = searchBar.text ?? ""
+        if searchType == .product {
+            let request = SearchRequest(text: text, paginationToken: false, page: 1, limit: 25)
+            searchVM.search(searchRequest: request)
+        } else if searchType == .restaurant {
+            // restaurant
+            let request = RestaurantListRequest(longitude: longitude, latitude: latitude, categories: [], text: text)
+            restaurantListingVM.fetchRestaurantListing(request: request)
+        }
+    }
+    
+    // searchBarSearchButtonClicked
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+}
