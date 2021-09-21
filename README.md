@@ -1,7 +1,8 @@
 # super-duper-robot-gist
 
-
-```
+## 1. To change the keyboard language programmatically
+#### NOTE: - Keyboard must be added in the device
+```swift
 // To change the keyboard language programmatically
 class CustomTextField: UITextField {
     private func getKeyboardLanguage() -> String? {
@@ -18,5 +19,4 @@ class CustomTextField: UITextField {
         return super.textInputMode
     }
 }
-
 ```
