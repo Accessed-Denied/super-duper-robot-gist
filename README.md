@@ -98,6 +98,6 @@ and find out the code and remove this block and build and run your app.
 / End PBXBuildRule section /
 ```
 
-## 3. To redirect logs to slack
+## 4. Redirect logs to slack
 ````shell
 curl -X POST --data-urlencode "payload={\"channel\": \"#channelname here\", \"username\": \"username here\", \"text\": \"message here\", \"icon_emoji\": \":ghost:\"}" https://hooks.slack.com/services/apikey
