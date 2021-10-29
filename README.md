@@ -101,3 +101,9 @@ and find out the code and remove this block and build and run your app.
 ## 4. Redirect logs to slack
 ````shell
 curl -X POST --data-urlencode "payload={\"channel\": \"#channelname here\", \"username\": \"username here\", \"text\": \"message here\", \"icon_emoji\": \":ghost:\"}" https://hooks.slack.com/services/apikey
+````
+
+## 5. Building iOS project from CLI (command line)
+````shell
+xcodebuild -scheme "schemeName" -allowProvisioningUpdates -destination generic/platform=iOS -derivedDataPath "./build" build-for-testing
+````
