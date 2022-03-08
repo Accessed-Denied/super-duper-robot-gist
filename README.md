@@ -107,3 +107,9 @@ curl -X POST --data-urlencode "payload={\"channel\": \"#channelname here\", \"us
 ````shell
 xcodebuild -scheme "schemeName" -allowProvisioningUpdates -destination generic/platform=iOS -derivedDataPath "./build" build-for-testing
 ````
+
+## 6. If getting error with ruby permissions
+ERROR: While executing gem ... (Gem::FilePermissionError)
+You don't have write permissions for the /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/gems/2.6.0 directory.
+
+Use this link: https://telliott.io/2015/10/14/using-rbenv-for-cocoapods-post-el-capitan.html
