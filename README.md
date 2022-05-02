@@ -113,3 +113,13 @@ ERROR: While executing gem ... (Gem::FilePermissionError)
 You don't have write permissions for the /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/gems/2.6.0 directory.
 
 Use this link: https://telliott.io/2015/10/14/using-rbenv-for-cocoapods-post-el-capitan.html
+
+
+## 7. To Generate ssh key
+````shell
+ssh-keygen -t rsa
+generate ssh key if not present
+display ssh key
+cat ~/.ssh/id_rsa.pub
+````
+
